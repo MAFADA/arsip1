@@ -10,4 +10,8 @@ class ArchiveCategory extends Model
     use HasFactory;
 
     protected $fillable = ['archive_category'];
+
+    public function archives(){
+        return $this->hasMany(Archive::class);
+    }
 }

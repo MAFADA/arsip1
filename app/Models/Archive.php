@@ -11,4 +11,8 @@ class Archive extends Model
 
     protected $fillable = ['letter_number','category','title'];
 
+    public function categories(){
+        return $this->belongsTo(ArchiveCategory::class,'category');
+    }
+
 }
