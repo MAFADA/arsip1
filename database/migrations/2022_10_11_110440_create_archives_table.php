@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('letter_number');
             $table->unsignedBigInteger('category');
-            $table->foreign('category')->references('archive_category')->on('archive_categories');
+            $table->foreign('category')->references('id')->on('archive_categories');
             $table->string('title');
             $table->timestamps();
         });
