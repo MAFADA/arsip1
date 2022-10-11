@@ -8,3 +8,4 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::resource('/archive',\App\Http\Controllers\ArchiveController::class);
+Route::post('/archive/media',[\App\Http\Controllers\ArchiveController::class,'storeMedia'])->name('archive.storeMedia');

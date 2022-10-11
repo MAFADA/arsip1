@@ -34,7 +34,37 @@ class ArchiveController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $data = Archive::create([
+            'letter_number' => $request->letter_number,
+            'category'=>$request->category,
+            'title'=>$request->title,
+        ]);
+
+        foreach ($request->input('document',[])as $file){
+            $data->addMedia(storage_path('tmp/uploads/'.$file))->toMediaCollection('document');
+        }
+
+        return redirect()->route('archive.index');
+    }
+
+    public function storeMedia(Request $request)
+    {
+        $path = storage_path('tmp/uploads');
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        $file = $request->file('file');
+
+        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+
+        $file->move($path, $name);
+
+        return response()->json([
+            'name'          => $name,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
     }
 
 
