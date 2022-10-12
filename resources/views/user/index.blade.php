@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel 9 Server Side Datatables Tutorial</title>
+    <title>Archive List</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -20,9 +20,10 @@
                 <thead>
                 <tr>
                     <th>Nomor Surat</th>
+                    <th>Kategori</th>
                     <th>Judul</th>
                     <th>Waktu Pengarsipan</th>
-                    <th width="100px">Aksi</th>
+                    <th width="200px">Aksi</th>
                 </tr>
                 </thead>
                 <tbody></tbody>
@@ -32,6 +33,28 @@
     </div>
 </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+
+    $('.show_confirm').click(function(event) {
+        var form =  $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+            title: `Are you sure you want to delete this record?`,
+            text: "If you delete this, it will be gone forever.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    form.submit();
+                }
+            });
+    });
+
+</script>
 <script type="text/javascript">
     $(function () {
         var table = $('.user_datatable').DataTable({
@@ -40,6 +63,7 @@
             ajax: "{{ route('archive.index') }}",
             columns: [
                 {data: 'letter_number', name: 'letter_number'},
+                {data: 'categories', name: 'categories.category_archive'},
                 {data: 'title', name: 'title'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},

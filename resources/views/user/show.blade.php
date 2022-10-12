@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Archive Lihat</title>
+    <title>Laravel 9 Server Side Datatables Tutorial</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -17,19 +17,17 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left mb-2">
-                <h2>About</h2>
+                <h2>Arsip Surat</h2>
             </div>
         </div>
         <div>
-            <img src="public/photo/2031710168.jpg" alt="" width="200" height="300">
+           <p>Nomor Surat:  {{$archive->letter_number}} <br>
+               Kategori:  {{$archive->categories->archive_category}}<br>
+               Judul:  {{$archive->title}}<br>
+               Waktu Unggah:  {{$archive->created_at}}<br></p>
         </div>
         <div>
-            <p>
-                Aplikasi ini dibuat oleh: <br>
-                Nama: M. Afada Nur Saiva Syahira <br>
-                NIM: 2141764168 <br>
-                Tanggal: 11 Oktober 2022 <br>
-            </p>
+            <iframe src="#" height="400" width="4000"></iframe>
         </div>
 
         <div class="pull-right">
