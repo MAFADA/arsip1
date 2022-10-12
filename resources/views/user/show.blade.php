@@ -32,7 +32,9 @@
 
         <div class="pull-right">
             <br><br><br><br>
-            <a class="btn btn-primary" href="{{ route('archive.index') }}"> Kembali</a>
+            <a class="btn btn-outline-primary" href="{{ route('archive.index') }}"> Kembali</a>
+            <a class="btn btn-outline-warning" href="{{ route('archive.index') }}"> Unduh</a>
+            <a class="btn btn-outline-info" href="{{ route('archive.edit',[$archive->id]) }}"> Ganti files</a>
         </div>
     </div>
 </div>

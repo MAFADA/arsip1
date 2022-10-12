@@ -87,7 +87,8 @@ class ArchiveController extends Controller
 
     public function edit(Archive $archive)
     {
-        //
+        $category = ArchiveCategory::all();
+        return view('user.edit',compact('archive','category'));
     }
 
 
